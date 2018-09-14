@@ -44,3 +44,21 @@ CREATE TABLE comments(
   commentsUsersID INTEGER REFERENCES users(id),
   commentsPostsID INTEGER REFERENCES posts(id)
 );
+
+ALTER TABLE posts
+ADD COLUMN user_id SERIAL NOT NULL;
+
+ALTER TABLE posts
+ADD FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE comments
+ADD COLUMN user_id SERIAL NOT NULL;
+
+ALTER TABLE comments
+ADD FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE comments
+ADD COLUMN posts_id SERIAL NOT NULL;
+
+ALTER TABLE comments
+ADD FOREIGN KEY (posts_id) REFERENCES posts(id);
